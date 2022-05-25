@@ -1,12 +1,11 @@
 import { iFilm } from '../interfaces/iFilm.js';
 import { Component } from './component.js';
-import { SERIES } from './data.js';
 
 export class Film extends Component {
-    series: Array<iFilm>;
-    constructor(selector: string) {
+    series: iFilm;
+    constructor(public serie: iFilm, selector: string) {
         super();
-        this.series = SERIES;
+        this.series = serie;
         this.template = this.createTemplate();
         this.addRender(selector);
     }
@@ -14,14 +13,13 @@ export class Film extends Component {
     createTemplate() {
         let html = '';
 
-        this.series.forEach((item) => {
-            html += `<li class="serie"><img
+        html += `<li class="serie"><img
                   class="serie__poster"
-                  src="${item.poster}"
-                  alt="${item.name} poster"/>
-                <h4 class="serie__title">${item.name}</h4>
-                <p class="serie__info">${item.creator} (${item.year})</p>`;
-        });
+                  src="${this.serie.poster}"
+                  alt="${this.serie.name} poster"/>
+                <h4 class="serie__title">${this.serie.name}</h4>
+                <p class="serie__info">${this.serie.creator} (${this.serie.year})</p>`;
+
         html += `
                 <ul class="score">
                   <li class="score__star">

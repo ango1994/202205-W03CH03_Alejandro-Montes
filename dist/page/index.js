@@ -1,4 +1,4 @@
-import { Film } from '../components/Film.js';
+import { SeriesList } from '../components/seriesList.js';
 export function index() {
-    new Film('.series-list');
+    new SeriesList('section.series');
 }
