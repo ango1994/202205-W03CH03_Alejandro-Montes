@@ -1,4 +1,6 @@
-export const SERIES: Array<Object> = [
+import { iFilm } from '../interfaces/iFilm.js';
+
+export const SERIES: Array<iFilm> = [
     {
         id: 1,
         name: 'The Sopranos',
