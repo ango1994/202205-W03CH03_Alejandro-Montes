@@ -24,11 +24,13 @@
             <main class="main">
                 <section class="series">
                     <h2 class="section-title">Series list</h2>
-                    <section class="series-pending">
+                    <slot class="pending"></slot>
+                    <!-- <section class="series-pending">
                         <h3 class="subsection-title">Pending series</h3>
-                        <p class="info">You have 4 series pending to watch</p>
+                        <p class="info">You have 4 series pending to watch</p> -->
                         <!--<p class="info">Congrats! You've watched all your series</p>-->
-                        <ul class="series-list">
+                        <!-- <slot class="series-pending"></slot>
+                        <ul class="series-list"> -->
                             <!-- <li class="serie">
                                 <img
                                     class="serie__poster"
@@ -198,14 +200,15 @@
                                     </li>
                                 </ul>
                                 <i class="fas fa-times-circle icon--delete"></i>
-                            </li>
-                        </ul> -->
+                            </li>-->
+                        </ul>
                     </section>
-                    <section class="series-watched">
+                    <slot class="watched"></slot>
+                    <!-- <section class="series-watched">
                         <h3 class="subsection-title">Watched series</h3>
-                        <p class="info">You have watched 4 series</p>
+                        <p class="info">You have watched 4 series</p> -->
                         <!--<p class="info">You already have not watched any serie</p>-->
-                        <ul class="series-list series-list--watched">
+                        <!-- <ul class="series-list series-list--watched">
                             <li class="serie">
                                 <img
                                     class="serie__poster"
@@ -378,9 +381,8 @@
                             </li>
                         </ul>
                     </section>
-                </section>
+                </section> -->
             </main>
         </div>
     </body>
 </html>
-

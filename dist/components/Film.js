@@ -1,23 +1,22 @@
 import { Component } from './component.js';
-import { SERIES } from './data.js';
 export class Film extends Component {
+    serie;
     series;
-    constructor(selector) {
+    constructor(serie, selector) {
         super();
-        this.series = SERIES;
+        this.serie = serie;
+        this.series = serie;
         this.template = this.createTemplate();
         this.addRender(selector);
     }
     createTemplate() {
         let html = '';
-        this.series.forEach((item) => {
-            html += `<li class="serie"><img
+        html += `<li class="serie"><img
                   class="serie__poster"
-                  src="${item.poster}"
-                  alt="${item.name} poster"/>
-                <h4 class="serie__title">${item.name}</h4>
-                <p class="serie__info">${item.creator} (${item.year})</p>`;
-        });
+                  src="${this.serie.poster}"
+                  alt="${this.serie.name} poster"/>
+                <h4 class="serie__title">${this.serie.name}</h4>
+                <p class="serie__info">${this.serie.creator} (${this.serie.year})</p>`;
         html += `
                 <ul class="score">
                   <li class="score__star">
