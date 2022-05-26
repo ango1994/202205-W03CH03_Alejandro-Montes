@@ -5,7 +5,7 @@ import { Film } from './Film.js';
 
 export class SeriesList extends Component {
     series: Array<iFilm>;
-    constructor(selector: string) {
+    constructor(public selector: string) {
         super();
         this.series = SERIES;
         this.template = this.createTemplate();
@@ -19,14 +19,25 @@ export class SeriesList extends Component {
         });
     }
     createTemplate() {
+        const notWatched = this.series.filter((item) => {
+            return !item.watched;
+        }).length;
+        const watched = this.series.filter((item) => {
+            return item.watched;
+        }).length;
+
         return `
           <section class="series">
                     <h2 class="section-title">Series list</h2>
                     
         <section class="series-pending">
                         <h3 class="subsection-title">Pending series</h3>
-                        <p class="info">You have 4 series pending to watch</p>
-                        <!--<p class="info">Congrats! You've watched all your series</p>-->
+                        <p class="info">You have ${notWatched} series pending to watch</p>
+                        <p class="info">${
+                            !notWatched
+                                ? 'Congrats! You ve watched all your series'
+                                : ''
+                        }</p>
                         <ul class="series-list">
                         <slot class="pending"></slot> 
                         </ul>
@@ -36,12 +47,37 @@ export class SeriesList extends Component {
                     
                     <section class="series-watched">
                         <h3 class="subsection-title">Watched series</h3>
-                        <p class="info">You have watched 4 series</p>
-                        <p class="info">You already have not watched any serie</p>
+                        <p class="info">You have watched ${watched}  series</p>
+                        <p class="info">${
+                            !watched
+                                ? 'You already have not watched any serie'
+                                : ''
+                        }</p>
                         <ul class="series-list series-list--watched">
                         <slot class="watched"></slot>
                         </ul>
                          </section>
                         `;
+    }
+
+    private manageComponent() {
+        document
+            .querySelectorAll('.fas.fa-times-circle')
+            .forEach((item) =>
+                item.addEventListener('click', () => console.log('hola mundo'))
+            );
+    }
+
+    private updateComponent() {
+        this.template = this.createTemplate();
+        this.render(this.selector);
+        this.manageComponent();
+    }
+
+    private handlerButton(ev: Event) {
+        const deletedId = (<HTMLElement>ev.target).dataset.name;
+        console.log('click', deletedId);
+        this.series = this.series.filter((item) => item.name !== deletedId);
+        this.updateComponent();
     }
 }
